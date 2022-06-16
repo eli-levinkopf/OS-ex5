@@ -1,0 +1,45 @@
+omerbs110, eli.levinkopf
+Omer Ben Simhon (316155233), Eli Levinkopf (205821879)
+EX: 5
+
+FILES:
+container.cpp -- part 2 implementation
+sockets.cpp -- part 3 implementation
+
+REMARKS:
+-
+
+ANSWERS:
+
+Q1:
+One general use for the PID namespace is to allow process isolation. PID namespaces isolate the process ID number space,
+meaning that processes in different PID namespaces can have the same PID. This is important because it means that processes
+can be guaranteed not to have a conflicting PID with any other process. When considering a single system, of course,
+there is no chance of PIDs conflicting because the system continuously increments the process ID number and never assigns
+the same number twice. When dealing with containers across multiple machines, this issue becomes more salient.
+
+Q2:
+Creating a separate mount namespace allows each of these isolated processes to have a completely different view of the
+ entire system’s mountpoint structure from the original one. This allows you to have a different root for each isolated process,
+ as well as other mountpoints that are specific to those processes. When a parent process creates a new child process,
+ from the parent process’s perspective, the child PID will be PARENT_PID.1.
+
+Q3:
+Control groups, usually referred to as cgroups, are a Linux kernel feature which allow processes to be organized into
+ hierarchical groups whose usage of various types of resources can then be limited and monitored. The main use is limiting
+ what a container can do, and whice of the systems resources it cas use.
+
+Q4:
+The main use of clone() is to create a new child process. By contrast with fork(), clone() provides more precise
+control over what pieces of execution context are share between the calling process and the child process.  For example,
+by using clone() you can limit the number of processes the child process can create.
+
+Q5:
+chroot command in Linux/Unix system is used to change the root directory. Every process/command in Linux/Unix like systems
+ has a current working directory called root directory. It changes the root directory for currently running processes as
+ well as its child processes.
+
+Q6:
+Proc file system (procfs) is virtual file system. It contains useful information about the processes that are currently
+ running, it is regarded as control and information center for kernel. For example, to get the status information of a process,
+ all you have to do is read the file /proc/PID/status and get details about it like its pid, number of threads etc.
